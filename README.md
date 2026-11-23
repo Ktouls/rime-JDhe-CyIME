@@ -92,11 +92,12 @@ keyboard:
 
 **清理（桌面端专用，手机用不到）**
 
-- 删除 `tiger.*`、`stroke.*`、`jde.schema.yaml`、`default.yaml`、`squirrel.yaml`、`squirrel.custom.yaml`、`*.gram`（约 51 MB 桌面语言模型）、`predict.db`（约 7 MB）。
+- 删除上游的桌面入口 `jde.schema.yaml`（依赖 `reverse_pinyin`、`melt_eng`、图标与桌面 Lua 的那份）、`tiger.*`、`stroke.*`、`default.yaml`、`squirrel.yaml`、`squirrel.custom.yaml`、`*.gram`（约 51 MB 桌面语言模型）、`predict.db`（约 7 MB）。
 - 同时移除依赖上述方案的桌面附属资产：`ico/`、`config_*.yaml`、`custom(自定义参考)/`、`en_dicts/`、`melt_eng.*`、`pinyin.*`、`reverse_pinyin.*`、`charset.*`、`sentence.schema.yaml`，以及 `lua/` 下的计算器、快捷启动等桌面脚本。上游原版需要这些功能时请直接使用上游仓库。
 
 **工程**
 
+- 主方案沿用上游的 id `jde` 与显示名「简单鹤」，但**同名不同内容**：本仓库的 `jde.schema.yaml` 是 CyIME 专用入口（不依赖桌面 `config_base.yaml`、`reverse_pinyin`、`melt_eng`、图标），上游的桌面版 `jde.schema.yaml` 未保留。改方案内容时请以本仓库这份为准，不要把上游那份直接覆盖回来，否则会缺依赖、装不上。
 - `.gitignore` 忽略 `*.bin`、`*.userdb/`、`build/`、`sync/`、`*.gram`、`predict.db` 等编译产物，仓库内无任何产物文件。
 - 全仓单文件最大 43.6 MB（`cn_dicts/pinyin/base.dict.yaml`），低于 GitHub 50 MB 警告线与 100 MB 硬限制。
 
