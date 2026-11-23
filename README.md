@@ -11,7 +11,7 @@
 |---|---|
 | 客户端下载 | **[CyIME Releases (Latest)](https://github.com/Cyletix/CyIME/releases/latest)** |
 | 一键取方案 | 本页绿色 `Code` → `Download ZIP` |
-| 本次发布 | [v9.3 Release](https://github.com/Ktouls/rime-JDhe-CyIME/releases/tag/v9.3)（含纯方案包 `Simplehe-CyIME-v9.3.zip`） |
+| 本次发布 | [v9.3 Release](https://github.com/Ktouls/rime-JDhe-CyIME/releases/tag/v9.3)（`Simplehe-CyIME-v9.3.zip` 手工导入用，`simplehe-9.3.zip` 为方案商店包） |
 | 使用说明 | [README_CyIME.md](README_CyIME.md) |
 | 上游原版 | [rimeinn/rime-JDhe](https://github.com/rimeinn/rime-JDhe) |
 | 交接说明 | [GITHUB_HANDOFF.md](GITHUB_HANDOFF.md) |
