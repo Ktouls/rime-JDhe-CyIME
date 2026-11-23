@@ -1,0 +1,15 @@
+# Rime dictionary: jdh_sentence (CyIME 下游模块化入口)
+# 直接复用 rime-JDhe 上游 cn_dicts/pinyin/* 子词库，避免单文件超过 GitHub 50MB 限制
+---
+name: jdh_sentence
+version: "9.3"
+sort: by_weight
+import_tables:
+  - cn_dicts/pinyin/8105
+  - cn_dicts/pinyin/41448
+  - cn_dicts/pinyin/base
+  - cn_dicts/pinyin/words
+  - cn_dicts/pinyin/tencent
+  - cn_dicts/pinyin/moe
+  - cn_dicts/my_user
+...

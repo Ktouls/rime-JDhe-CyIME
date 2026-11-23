@@ -1,0 +1,31 @@
+# 简单鹤 · 9.3 固定码表编译方案（内部用，请勿在方案选单启用）
+schema:
+  schema_id: jde_fixed
+  name: 简单鹤·字词(内部)
+  version: "9.3"
+  author:
+    - 简单
+  language: zh
+
+engine:
+  processors: [ascii_composer, speller, selector, navigator, express_editor]
+  segmentors: [ascii_segmentor, abc_segmentor, fallback_segmentor]
+  translators:
+    - table_translator
+  filters:
+    - uniquifier
+
+speller:
+  alphabet: "zyxwvutsrqponmlkjihgfedcba;/"
+  delimiter: "'"
+  max_code_length: 4
+  algebra:
+    - xform/^\*//
+
+translator:
+  dictionary: jde_fixed
+  enable_charset_filter: false
+  enable_encoder: false
+  enable_sentence: false
+  enable_completion: false
+  enable_user_dict: false

@@ -1,0 +1,21 @@
+# ---- Rime 编译/运行产物（不入库） ----
+*.bin
+*.userdb/
+*.userdb
+build/
+sync/
+installation.yaml
+user.yaml
+*.gram
+predict.db
+prism.bin
+*.reverse.bin
+*.table.bin
+*.txt.bin
+*.log
+
+# ---- 系统/编辑器杂项 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp

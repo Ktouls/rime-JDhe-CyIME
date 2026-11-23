@@ -1,0 +1,180 @@
+# 简单鹤 · CyIME v9.3 完整重构版
+# 同步 rimeinn/rime-JDhe v9.3 码表 (jde_fixed) + 魔然 Lua (固词/出简让全/简快码提示/置顶造词)
+# + 清洗后全量整句与飞键 (jdh_sentence) + 官方 OpenCC 拆分滤镜 + 反引号反查与部件拆字
+
+schema:
+  schema_id: simplehe
+  name: 简单鹤
+  version: "9.3"
+  author:
+    - 简单
+  language: zh
+  dependencies:
+    - jde_fixed
+    - jdh_sentence
+    - simplehe_pinyin
+    - radical_pinyin
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中, En ]
+  - name: chaifen
+    reset: 0
+    states: [ 不拆, 扌斥 ]
+  - name: inflexible
+    reset: 1
+
+engine:
+  processors:
+    - lua_processor@*chaifen_toggle
+    - lua_processor@*moran_pin*pin_processor
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@pinyin_lookup
+    - affix_segmentor@radical_lookup
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator@pinyin_lookup
+    - table_translator@radical_lookup
+    - lua_translator@*moran_express_translator@with_reorder
+    - lua_translator@*moran_pin*panacea_translator
+  filters:
+    - lua_filter@*moran_reorder_filter
+    - lua_filter@*moran_ijrq_filter
+    - lua_filter@*moran_hint_filter
+    - reverse_lookup_filter@simplehe_rev
+    - lua_filter@*moran_pin*pin_filter
+    - simplifier@chaifen
+    - uniquifier
+
+speller:
+  alphabet: 'zyxwvutsrqponmlkjihgfedcba`'
+  initials: 'zyxwvutsrqponmlkjihgfedcba`'
+  delimiter: " '"
+  max_code_length: 32
+
+# 固定码表翻译器（挂载上游 v9.3 简单鹤码表 jde_fixed）
+fixed:
+  dictionary: jde_fixed
+  enable_encoder: false
+  enable_sentence: false
+  encode_commit_history: true
+  enable_completion: false
+  enable_user_dict: false
+  initial_quality: 10
+  comment_format:
+    - xform/^.*$//
+
+# 整句翻译器（挂载清洗后的全量带形码整句词库 jdh_sentence）
+smart:
+  dictionary: jdh_sentence
+  prism: jdh_sentence
+  enable_completion: true
+  enable_sentence: true
+  enable_user_dict: true
+  initial_quality: 1.2
+  comment_format:
+    - xform/^.*$//
+  core_word_length: 4
+  max_word_length: 10
+  spelling_hints: 0
+  disable_user_dict_for_patterns:
+    - "^[a-z]$"
+    - "^[a-z]{2}$"
+
+# 魔然控制参数（同步自 rimeinn/rime-JDhe）
+moran:
+  quick_code_indicator: "⌃"
+  quick_code_in_sentence_making: true
+  enable_word_filter: true
+  word_filter_match_indicator: ""
+  ijrq:
+    enable: true
+    show_hint: true
+    suffix: "o"
+    enable_word: false
+    enable_word_defer: 1
+    enable_word_delay: 200
+  enable_aux_hint: false
+  enable_quick_code_hint: true
+  quick_code_hint_indicator: null
+  quick_code_hint_skip_chars: true
+  inject_fixed_chars: true
+  inject_fixed_words: true
+  inject_prioritize: "char"
+  pin:
+    enable: true
+    indicator: "ᵀᴼᴾ"
+  panacea:
+    prompt: "〔加詞〕"
+    infix: "//"
+    freestyle: false
+  shorthands: false
+  disable_sentence_candidates_upto: 0
+
+# 官方 OpenCC 实时拆分滤镜（统一格式：[字根·形码]）
+chaifen:
+  option_name: chaifen
+  opencc_config: jdh_cf.json
+  tips: char
+  tags: [ abc ]
+  show_in_comment: true
+  comment_format:
+    - "xform/〔/[/"
+    - "xform/〕/]/"
+    - "xform/¦/·/"
+    - "xform/\\|/·/"
+
+key_binder:
+  bindings:
+    - { when: has_menu, accept: "Control+i", toggle: chaifen }
+
+recognizer:
+  patterns:
+    pinyin_lookup: "^`[a-z]*'?$"
+    radical_lookup: "^oiz[a-z]*'?$"
+
+# 反查前缀：`
+pinyin_lookup:
+  tag: pinyin_lookup
+  prefix: '`'
+  suffix: "'"
+  dictionary: simplehe
+  prism: simplehe
+  enable_completion: true
+  enable_sentence: false
+  enable_user_dict: false
+  tips: 简单鹤反查
+
+# 部件拆字反查（调用 CyIME 内置 radical_pinyin）
+radical_lookup:
+  tag: radical_lookup
+  prefix: 'oiz'
+  suffix: "'"
+  dictionary: radical_pinyin
+  enable_completion: true
+  enable_sentence: false
+  enable_user_dict: false
+  tips: 部件拆字
+
+# 反查注释提取（统一格式：[字根·形码]）
+simplehe_rev:
+  tags: [pinyin_lookup, radical_lookup]
+  dictionary: simplehe
+  overwrite_comment: true
+  comment_format:
+    - 'xform/^.*?\[([^]]+)\]([a-z]+).*$/[$1·$2]/'
+    - 'xform/^[a-z]+$//'

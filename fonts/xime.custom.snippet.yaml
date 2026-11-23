@@ -1,0 +1,5 @@
+# 若你还没有 xime.custom.yaml，可复制本文件改名为 xime.custom.yaml 放到 Rime 目录根目录。
+# 若你已有 xime.custom.yaml，请只把下面三行合并进去，切勿整文件覆盖！
+keyboard:
+  fonts:
+    comment_font: fonts/ChaiPUA.ttf

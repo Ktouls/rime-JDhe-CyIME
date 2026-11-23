@@ -1,0 +1,105 @@
+# 简单鹤 · 整句词典编译方案（内部用，请勿在方案选单启用）
+schema:
+  schema_id: jdh_sentence
+  name: 简单鹤整句词典
+  version: "9.3"
+  author:
+    - 简单
+  language: zh
+
+engine:
+  processors: [ascii_composer, speller, selector, navigator, express_editor]
+  segmentors: [ascii_segmentor, abc_segmentor, fallback_segmentor]
+  translators:
+    - script_translator
+  filters:
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " '"
+  max_code_length: 32
+  algebra:
+    - 'derive/^([jqxy])u(;.*)$/$1v$2/'
+    - 'derive/^([aoe])([ioun])(;.*)$/$1$1$2$3/'
+    - 'xform/^([aoe])(ng)?(;.*)$/$1$1$2$3/'
+    - 'xform/^(\w+?)iu(;.*)/$1Ⓠ$2/'
+    - 'xform/^(\w+?)ei(;.*)/$1Ⓦ$2/'
+    - 'xform/^(\w+?)uan(;.*)/$1Ⓡ$2/'
+    - 'xform/^(\w+?)[uv]e(;.*)/$1Ⓣ$2/'
+    - 'xform/^(\w+?)un(;.*)/$1Ⓨ$2/'
+    - 'xform/^(\w+?)uo(;.*)/$1Ⓞ$2/'
+    - 'xform/^(\w+?)ie(;.*)/$1Ⓟ$2/'
+    - 'xform/^(\w+?)i?ong(;.*)/$1Ⓢ$2/'
+    - 'xform/^(\w+?)ing(;.*)/$1Ⓚ$2/'
+    - 'xform/^(\w+?)uai(;.*)/$1Ⓚ$2/'
+    - 'xform/^(\w+?)ai(;.*)/$1Ⓓ$2/'
+    - 'xform/^(\w+?)eng(;.*)/$1Ⓖ$2/'
+    - 'xform/^(\w+?)en(;.*)/$1Ⓕ$2/'
+    - 'xform/^(\w+?)[iu]ang(;.*)/$1Ⓛ$2/'
+    - 'xform/^(\w+?)ang(;.*)/$1Ⓗ$2/'
+    - 'xform/^(\w+?)ian(;.*)/$1Ⓜ$2/'
+    - 'xform/^(\w+?)an(;.*)/$1Ⓙ$2/'
+    - 'xform/^(\w+?)ou(;.*)/$1Ⓩ$2/'
+    - 'xform/^(\w+?)iao(;.*)/$1Ⓝ$2/'
+    - 'xform/^(\w+?)[iu]a(;.*)/$1Ⓧ$2/'
+    - 'xform/^(\w+?)ao(;.*)/$1Ⓒ$2/'
+    - 'xform/^(\w+?)ui(;.*)/$1Ⓥ$2/'
+    - 'xform/^(\w+?)in(;.*)/$1Ⓑ$2/'
+    - 'xform/^sh(.*;.*)$/Ⓤ$1/'
+    - 'xform/^ch(.*;.*)$/Ⓘ$1/'
+    - 'xform/^zh(.*;.*)$/Ⓥ$1/'
+    - 'xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/'
+    - 'derive/kk;/kw;/'
+    - 'derive/yi;/ei;/'
+    - 'derive/qx;/qo;/'
+    - 'derive/xq;/xo;/'
+    - 'derive/rr;/rp;/'
+    - 'derive/gf;/gp;/'
+    - 'derive/jn;/ja;/'
+    - 'derive/po;/ps;/'
+    - 'derive/fg;/fs;/'
+    - 'derive/qq;/qh;/'
+    - 'derive/ww;/wk;/'
+    - 'derive/cs;/cl;/'
+    - 'derive/zs;/zl;/'
+    - 'derive/dc;/dl;/'
+    - 'derive/vr;/vn;/'
+    - 'derive/ce;/cn;/'
+    - 'derive/bm;/bz;/'
+    - 'derive/ji;/jo;/'
+    - 'derive/bd;/be;/'
+    - 'xform|^(.*?);(.*?);.*$|$1;$2|'
+    - 'derive/^(.+);.*$/$1/'
+    - 'derive/^(.+);(\w)(\w).*$/$1$2/'
+    - 'abbrev/^(.+);(\w)(\w).*$/$1$2$3/'
+    - 'derive|^(.+);(\w)(\w).*$|$1$2$3/|'
+    - 'derive|^(.+);(\w)(\w).*$|$1$2$3o|'
+    - 'derive/^(.+);.*?,(\w)(\w).*$/$1$2/'
+    - 'abbrev/^(.+);.*?,(\w)(\w).*$/$1$2$3/'
+    - 'derive|^(.+);.*?,(\w)(\w).*$|$1$2$3/|'
+    - 'derive|^(.+);.*?,(\w)(\w).*$|$1$2$3o|'
+    - 'derive/^(.+);.*?,.*?,(\w)(\w).*$/$1$2/'
+    - 'abbrev/^(.+);.*?,.*?,(\w)(\w).*$/$1$2$3/'
+    - 'derive|^(.+);.*?,.*?,(\w)(\w).*$|$1$2$3/|'
+    - 'derive|^(.+);.*?,.*?,(\w)(\w).*$|$1$2$3o|'
+    - 'derive/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2/'
+    - 'abbrev/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2$3/'
+    - 'derive|^(.+);.*?,.*?,.*?,(\w)(\w).*$|$1$2$3/|'
+    - 'derive|^(.+);.*?,.*?,.*?,(\w)(\w).*$|$1$2$3o|'
+    - 'derive/^(.+);(wq|aq|av|xh|bv|jz|hm|sn|iw|ak|fy|yx|wb|wr|yw|qz|ms|at|xf|gi|gn|or|fs|rl|cq|sw|sq|fp|ae|ix|ep|ar|wm|et|ct|os|zq|ew|fm|ab|tf|fx|we|wx|bq|ez|bs|ej|oh|ps|fr|pq|au|wc|wp|dt|qf|im|br|un|fi|zm|vn|oz|kt|rq|ay|fn|um|eq|eu|yq|tq|oi|ek|az|fv|zx|ut|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|eg|ey|em|ag|hi|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|am|ov|oq|ym|ef|ot|mr|rd|oc|oe|fq|cn|ok|rn|yv|wk|oy|bt|je|ow|xg|jj|rw|ja|wt|lf|xe|wy|sm|qe|xa|cw|zn|jo|kq|it|wv|fc|ob|vm|ed|xo|fl|gq|gt|of|pv|qa|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|aj|yg|jf|jg|es|ax|rt|yf|ex|rx|tt|us|qg|pe|qh|rm|jh|cm|yl|eo|ra|aw|tw|fk|gm|ec|be|vq|fd)$/$1$2/'
+    - 'erase/^(.+);(.+)$/'
+
+translator:
+  dictionary: jdh_sentence
+  prism: jdh_sentence
+  enable_completion: true
+  enable_sentence: true
+  enable_user_dict: true
+  initial_quality: 1.2
+  core_word_length: 4
+  max_word_length: 10
+  spelling_hints: 0
+  disable_user_dict_for_patterns:
+    - "^[a-z]$"
+    - "^[a-z]{2}$"
