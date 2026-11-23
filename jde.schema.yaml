@@ -1,10 +1,10 @@
-# JDhe · CyIME v9.3 —— 简单鹤（JDhe）安卓适配主方案
+# 简单鹤（jde）· CyIME v9.3 —— rime-JDhe 安卓适配主方案
 # 同步 rimeinn/rime-JDhe v9.3 码表 (jde_fixed) + 魔然 Lua (固词/出简让全/简快码提示/置顶造词)
 # + 清洗后全量整句与飞键 (jdh_sentence) + 官方 OpenCC 拆分滤镜 + 反引号反查与部件拆字
 
 schema:
-  schema_id: jdhe
-  name: JDhe
+  schema_id: jde
+  name: 简单鹤
   version: "9.3"
   author:
     - 简单
@@ -12,7 +12,7 @@ schema:
   dependencies:
     - jde_fixed
     - jdh_sentence
-    - jdhe_pinyin
+    - jde_pinyin
     - radical_pinyin
 
 switches:
@@ -55,7 +55,7 @@ engine:
     - lua_filter@*moran_reorder_filter
     - lua_filter@*moran_ijrq_filter
     - lua_filter@*moran_hint_filter
-    - reverse_lookup_filter@jdhe_rev
+    - reverse_lookup_filter@jde_rev
     - lua_filter@*moran_pin*pin_filter
     - simplifier@chaifen
     - uniquifier
@@ -152,8 +152,8 @@ pinyin_lookup:
   tag: pinyin_lookup
   prefix: '`'
   suffix: "'"
-  dictionary: jdhe
-  prism: jdhe
+  dictionary: jde
+  prism: jde
   enable_completion: true
   enable_sentence: false
   enable_user_dict: false
@@ -171,9 +171,9 @@ radical_lookup:
   tips: 部件拆字
 
 # 反查注释提取（统一格式：[字根·形码]）
-jdhe_rev:
+jde_rev:
   tags: [pinyin_lookup, radical_lookup]
-  dictionary: jdhe
+  dictionary: jde
   overwrite_comment: true
   comment_format:
     - 'xform/^.*?\[([^]]+)\]([a-z]+).*$/[$1·$2]/'

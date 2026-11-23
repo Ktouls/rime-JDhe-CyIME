@@ -1,7 +1,7 @@
 # 简单鹤 · 拼音反查词典
 schema:
-  schema_id: jdhe_pinyin
-  name: JDhe 拼音反查
+  schema_id: jde_pinyin
+  name: 简单鹤·拼音反查
   version: "9.3"
   author:
     - 简单
@@ -21,7 +21,7 @@ engine:
   translators:
     - table_translator
   filters:
-    - reverse_lookup_filter@jdhe_rev
+    - reverse_lookup_filter@jde_rev
     - uniquifier
 
 speller:
@@ -29,13 +29,13 @@ speller:
   max_code_length: 24
 
 translator:
-  dictionary: jdhe
+  dictionary: jde
   enable_completion: true
   enable_sentence: false
   enable_user_dict: false
 
-jdhe_rev:
-  dictionary: jdhe
+jde_rev:
+  dictionary: jde
   overwrite_comment: true
   comment_format:
     - 'xform/^.*?\[([^]]+)\]([a-z]+).*$/[$1·$2]/'
