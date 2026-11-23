@@ -1,3 +1,5 @@
+# 部件拆字反查（取自 mirtlecn/rime-radical-pinyin），已去除对桌面 default.yaml 的依赖
+
 # Rime schema settings
 # encoding: utf-8
 
@@ -28,7 +30,11 @@ engine:
     - uniquifier
 
 key_binder:
-  __include: default:/key_binder?
+  # 上游此处为 __include: default:/key_binder?（依赖桌面 default.yaml）。
+  # 本仓库已移除 default.yaml，改为自带最小绑定，保持独立可用。
+  bindings:
+    - { when: composing, accept: "Tab", send: "Page_Down" }
+    - { when: composing, accept: "Shift+Tab", send: "Page_Up" }
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz;"
