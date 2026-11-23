@@ -1,7 +1,7 @@
-# 简单鹤 · CyIME 安卓适配版（v9.3）
+# JDhe（简单鹤）· CyIME 安卓适配版 v9.3
 
 > 本仓库是 **[rimeinn/rime-JDhe](https://github.com/rimeinn/rime-JDhe)**（GPL-3.0，作者：简单）的 **CyIME 安卓下游适配版**。
-> 保留上游全部打字核心（9.3.0 码表、魔然 Lua 引擎、小鹤飞键、OpenCC 实时拆分），针对 Android 端重做入口方案 `simplehe`，并清理手机上用不到的桌面资产。
+> 保留上游全部打字核心（9.3.0 码表、魔然 Lua 引擎、小鹤飞键、OpenCC 实时拆分），针对 Android 端重做入口方案 `jdhe`，并清理手机上用不到的桌面资产。
 
 [![Release](https://img.shields.io/github/v/release/Ktouls/rime-JDhe-CyIME?label=release)](https://github.com/Ktouls/rime-JDhe-CyIME/releases)
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
@@ -11,7 +11,7 @@
 |---|---|
 | 客户端下载 | **[CyIME Releases (Latest)](https://github.com/Cyletix/CyIME/releases/latest)** |
 | 一键取方案 | 本页绿色 `Code` → `Download ZIP` |
-| 本次发布 | [v9.3 Release](https://github.com/Ktouls/rime-JDhe-CyIME/releases/tag/v9.3)（`Simplehe-CyIME-v9.3.zip` 手工导入用，`simplehe-9.3.zip` 为方案商店包） |
+| 本次发布 | [v9.3 Release](https://github.com/Ktouls/rime-JDhe-CyIME/releases/tag/v9.3)（`JDhe-CyIME-v9.3.zip` 手工导入用，`jdhe-9.3.zip` 为方案商店包） |
 | 使用说明 | [README_CyIME.md](README_CyIME.md) |
 | 上游原版 | [rimeinn/rime-JDhe](https://github.com/rimeinn/rime-JDhe) |
 | 交接说明 | [GITHUB_HANDOFF.md](GITHUB_HANDOFF.md) |
@@ -25,7 +25,7 @@
 3. 把 ZIP **解压后**的全部内容（`*.schema.yaml`、`*.dict.yaml`、`cn_dicts/`、`lua/`、`opencc/`、`fonts/`、`other/`）放进 CyIME 的 **Rime 用户目录**（不要只放 ZIP，也不要保留外层文件夹）。
 4. **字体防方框**（详见下一节）：把 `fonts/xime.custom.snippet.yaml` 里的三行并入 `xime.custom.yaml`。
 5. 在 CyIME 中点 **重新部署**。首次编译全量整句词库约需数十秒，请耐心等待，不要强杀进程。
-6. 「语言与方案」里**只启用「简单鹤」**。`jde_fixed`、`jdh_sentence`、`simplehe_pinyin` 是内部依赖方案，不要单独启用。
+6. 「语言与方案」里**只启用「JDhe」**。`jde_fixed`、`jdh_sentence`、`jdhe_pinyin` 是内部依赖方案，不要单独启用。
 
 ---
 
@@ -49,10 +49,10 @@ keyboard:
 | 场景 | 操作 | 说明 |
 |---|---|---|
 | 打字 / 简拼 / 整句 | 直接输入小鹤双拼 + 形码 | 整句中补 2 位形码在形码后加 `o`，例如 `yzdmpnowfti` |
-| **实时拆分开关** | 有输入时按 **`` ` ``**（实体键盘 `Ctrl+i`） | 由 `lua/chaifen_toggle.lua` 控制，候选注释在 `不拆` / `扌斥` 间切换；想默认常开可把 `simplehe.schema.yaml` 里 `chaifen` 的 `reset: 0` 改为 `1` |
+| **实时拆分开关** | 有输入时按 **`` ` ``**（实体键盘 `Ctrl+i`） | 由 `lua/chaifen_toggle.lua` 控制，候选注释在 `不拆` / `扌斥` 间切换；想默认常开可把 `jdhe.schema.yaml` 里 `chaifen` 的 `reset: 0` 改为 `1` |
 | 拼音 / 双拼反查 | **空输入**时按 **`` ` ``** 再打拼音 | 候选统一显示 `[字根·形码]` |
 | 部件拆字反查 | `oiz` + 部件读音 | 复用内置 `radical_pinyin`，适合查生僻字 |
-| 关闭 `⌃` 简快码提示 | 改 `simplehe.schema.yaml` 的 `moran:` 段 | `quick_code_indicator` 置空，或 `enable_quick_code_hint: false` |
+| 关闭 `⌃` 简快码提示 | 改 `jdhe.schema.yaml` 的 `moran:` 段 | `quick_code_indicator` 置空，或 `enable_quick_code_hint: false` |
 | 造词 | 输入 `//` | 魔然 `panacea` 加词 |
 
 ---
@@ -61,10 +61,10 @@ keyboard:
 
 | 文件 / 目录 | 作用 |
 |---|---|
-| `simplehe.schema.yaml` | 主方案「简单鹤」：9.3 固词 + 整句 + 魔然 Lua + OpenCC 拆分 + 反引号反查 + `oiz` 拆字 |
+| `jdhe.schema.yaml` | 主方案「JDhe」：9.3 固词 + 整句 + 魔然 Lua + OpenCC 拆分 + 反引号反查 + `oiz` 拆字 |
 | `jde_fixed.schema.yaml` / `jde_fixed.dict.yaml` / `cn_dicts/jde/*` | 9.3.0 固定简码表（已清理 `①` 占位符） |
 | `jdh_sentence.schema.yaml` / `jdh_sentence.dict.yaml` | 清洗后的全量带形码整句词库，19 组飞键规则，模块化 `import_tables` |
-| `simplehe_pinyin.schema.yaml` / `simplehe.dict.yaml` | 独立拼音反查方案与单字混合反查词典 |
+| `jdhe_pinyin.schema.yaml` / `jdhe.dict.yaml` | 独立拼音反查方案与单字混合反查词典 |
 | `cn_dicts/pinyin/{8105,41448,base,words,tencent,moe}.dict.yaml` | 整句模块化词库，单文件均 < 45 MB |
 | `cn_dicts/my_user.dict.yaml` | 用户词组 |
 | `lua/moran*.lua`、`lua/chaifen_toggle.lua`、`lua/zrmdb.txt` | 魔然核心脚本、手机端拆分开关、字根/辅码表 |
@@ -79,7 +79,7 @@ keyboard:
 
 **新增（CyIME 入口与适配）**
 
-- 新增主方案 `simplehe`，挂载 `jde_fixed` + `jdh_sentence` + 魔然 Lua + OpenCC 拆分 + 反引号反查，移除 `#` 与 `/` 的符号直出，`version: "9.3"`、`author: 简单`、`language: zh`。
+- 新增主方案 `jdhe`，挂载 `jde_fixed` + `jdh_sentence` + 魔然 Lua + OpenCC 拆分 + 反引号反查，移除 `#` 与 `/` 的符号直出，`version: "9.3"`、`author: 简单`、`language: zh`。
 - `jde_fixed`、`jdh_sentence` 改为不依赖桌面 `config_base.yaml` 的独立编译方案；`jdh_sentence` 通过 `import_tables` 复用 `cn_dicts/pinyin/*`，避开 GitHub 50 MB 单文件限制。
 - 新增 `lua/chaifen_toggle.lua`（空输入按 `` ` `` 反查、输入中按 `` ` `` 切换拆分）与 `fonts/xime.custom.snippet.yaml`。
 
