@@ -3,10 +3,15 @@
 > 本仓库是 **[rimeinn/rime-JDhe](https://github.com/rimeinn/rime-JDhe)**（GPL-3.0，作者：简单）的 **CyIME 安卓下游适配版**。
 > 保留上游全部打字核心（9.3.0 码表、魔然 Lua 引擎、小鹤飞键、OpenCC 实时拆分），针对 Android 端重做入口方案 `simplehe`，并清理手机上用不到的桌面资产。
 
+[![Release](https://img.shields.io/github/v/release/Ktouls/rime-JDhe-CyIME?label=release)](https://github.com/Ktouls/rime-JDhe-CyIME/releases)
+[![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
+[![Fork of rime-JDhe](https://img.shields.io/badge/fork-rimeinn%2Frime--JDhe-informational)](https://github.com/rimeinn/rime-JDhe)
+
 | 用途 | 链接 |
 |---|---|
 | 客户端下载 | **[CyIME Releases (Latest)](https://github.com/Cyletix/CyIME/releases/latest)** |
 | 一键取方案 | 本页绿色 `Code` → `Download ZIP` |
+| 本次发布 | [v9.3 Release](https://github.com/Ktouls/rime-JDhe-CyIME/releases/tag/v9.3)（含纯方案包 `Simplehe-CyIME-v9.3.zip`） |
 | 使用说明 | [README_CyIME.md](README_CyIME.md) |
 | 上游原版 | [rimeinn/rime-JDhe](https://github.com/rimeinn/rime-JDhe) |
 | 交接说明 | [GITHUB_HANDOFF.md](GITHUB_HANDOFF.md) |
