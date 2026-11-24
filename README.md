@@ -51,7 +51,7 @@ keyboard:
 | 打字 / 简拼 / 整句 | 直接输入小鹤双拼 + 形码 | 整句中补 2 位形码在形码后加 `o`，例如 `yzdmpnowfti` |
 | **实时拆分开关** | 有输入时按 **`` ` ``**（实体键盘 `Ctrl+i`） | 由 `lua/chaifen_toggle.lua` 控制，候选注释在 `不拆` / `扌斥` 间切换；想默认常开可把 `jde.schema.yaml` 里 `chaifen` 的 `reset: 0` 改为 `1` |
 | 拼音 / 双拼反查 | **空输入**时按 **`` ` ``** 再打拼音 | 候选统一显示 `[字根·形码]` |
-| 部件拆字反查 | `oiz` + 部件读音 | 复用内置 `radical_pinyin`，适合查生僻字 |
+| 部件拆字反查 | `oiz` + 部件读音（**全拼**） | 复用内置 `radical_pinyin`（词典与编译均来自 CyIME 内置，不随包分发），适合查生僻字 |
 | 关闭 `⌃` 简快码提示 | 改 `jde.schema.yaml` 的 `moran:` 段 | `quick_code_indicator` 置空，或 `enable_quick_code_hint: false` |
 | 造词 | 输入 `//` | 魔然 `panacea` 加词 |
 
@@ -70,7 +70,7 @@ keyboard:
 | `lua/moran*.lua`、`lua/chaifen_toggle.lua`、`lua/zrmdb.txt` | 魔然核心脚本、手机端拆分开关、字根/辅码表 |
 | `opencc/jdh_cf.json` / `opencc/jdh_cf.ocd2` | 官方简单鹤字根拆分词典 |
 | `fonts/ChaiPUA.ttf` / `fonts/xime.custom.snippet.yaml` | 配套拆分字体与防覆盖配置片段 |
-| `jde_radical.schema.yaml` | 部件拆字反查方案（用小鹤双拼 algebra，词典复用 CyIME 自带的 `radical_pinyin`，不随包分发） |
+| 部件拆字反查 | 复用 CyIME 内置 `radical_pinyin` 方案（`oiz` + 部件全拼，词典与编译产物均来自内置，不随包分发） |
 | `other/` | 上游字根图、更新日志、容错统计等资料 |
 
 ---

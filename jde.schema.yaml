@@ -13,7 +13,7 @@ schema:
     - jde_fixed
     - jdh_sentence
     - jde_pinyin
-    - jde_radical
+    - radical_pinyin
 
 switches:
   - name: ascii_mode
@@ -160,12 +160,12 @@ pinyin_lookup:
   tips: 简单鹤反查
 
 # 部件拆字反查（调用 CyIME 内置 radical_pinyin）
+# 部件拆字反查（复用 CyIME 自带的 radical_pinyin 方案，词典与编译产物均来自内置，不随包分发）
 radical_lookup:
   tag: radical_lookup
   prefix: 'oiz'
   suffix: "'"
   dictionary: radical_pinyin
-  prism: jde_radical
   enable_completion: true
   enable_sentence: false
   enable_user_dict: false
