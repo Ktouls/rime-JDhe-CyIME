@@ -9,7 +9,7 @@
 1. 在 GitHub 仓库页点绿色 **`Code`** → **`Download ZIP`**，得到本仓库的完整压缩包。
 2. 用手机自带文件管理器（或 MT、ZArchiver）**解压**到任意临时目录。
 3. 将解压出的全部内容移动到 CyIME 的 **Rime 用户目录**：
-   - 文件：`jde.schema.yaml`、`jde_fixed.schema.yaml`、`jde_fixed.dict.yaml`、`jdh_sentence.schema.yaml`、`jdh_sentence.dict.yaml`、`jde_pinyin.schema.yaml`、`jde.dict.yaml`、`radical_pinyin.schema.yaml`、`radical_pinyin.dict.yaml`、`symbols.yaml`
+   - 文件：`jde.schema.yaml`、`jde_fixed.schema.yaml`、`jde_fixed.dict.yaml`、`jdh_sentence.schema.yaml`、`jdh_sentence.dict.yaml`、`jde_pinyin.schema.yaml`、`jde.dict.yaml`、`jde_radical.schema.yaml`
    - 目录：`cn_dicts/`、`lua/`、`opencc/`、`fonts/`
 4. 注意不要把 ZIP 里那一层外层文件夹一起搬进去，否则 Rime 读不到方案。
 
@@ -39,7 +39,7 @@ keyboard:
 1. 打开 CyIME → 设置 → 点 **重新部署**。
 2. 首次部署要编译全量整句词库（合计 80 MB 左右），**约需数十秒**，期间无进度条属正常，请勿强杀进程。
 3. 部署完成后在「语言与方案」中**只勾选「简单鹤」**。
-   - `jde_fixed`、`jdh_sentence`、`jde_pinyin`、`radical_pinyin` 都是被依赖的内部方案，勾选会引入多余候选。
+   - `jde_fixed`、`jdh_sentence`、`jde_pinyin`、`jde_radical` 都是被依赖的内部方案，勾选会引入多余候选。
 4. 若方案列表里看不到「简单鹤」，请确认 `jde.schema.yaml` 位于 Rime 用户目录根部，然后重新部署。
 
 ---

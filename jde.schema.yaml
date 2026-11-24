@@ -13,7 +13,7 @@ schema:
     - jde_fixed
     - jdh_sentence
     - jde_pinyin
-    - radical_pinyin
+    - jde_radical
 
 switches:
   - name: ascii_mode
@@ -165,6 +165,7 @@ radical_lookup:
   prefix: 'oiz'
   suffix: "'"
   dictionary: radical_pinyin
+  prism: jde_radical
   enable_completion: true
   enable_sentence: false
   enable_user_dict: false

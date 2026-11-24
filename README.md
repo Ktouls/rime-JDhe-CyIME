@@ -70,7 +70,7 @@ keyboard:
 | `lua/moran*.lua`、`lua/chaifen_toggle.lua`、`lua/zrmdb.txt` | 魔然核心脚本、手机端拆分开关、字根/辅码表 |
 | `opencc/jdh_cf.json` / `opencc/jdh_cf.ocd2` | 官方简单鹤字根拆分词典 |
 | `fonts/ChaiPUA.ttf` / `fonts/xime.custom.snippet.yaml` | 配套拆分字体与防覆盖配置片段 |
-| `radical_pinyin.*` / `symbols.yaml` | 部件拆字反查方案、标点符号表 |
+| `jde_radical.schema.yaml` | 部件拆字反查方案（用小鹤双拼 algebra，词典复用 CyIME 自带的 `radical_pinyin`，不随包分发） |
 | `other/` | 上游字根图、更新日志、容错统计等资料 |
 
 ---
