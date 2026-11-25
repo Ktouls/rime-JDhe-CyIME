@@ -62,7 +62,7 @@ keyboard:
 | 文件 / 目录 | 作用 |
 |---|---|
 | `jde.schema.yaml` | 主方案「简单鹤」（id `jde`，与上游同名）：9.3 固词 + 整句 + 魔然 Lua + OpenCC 拆分 + 反引号反查 + `oiz` 拆字 |
-| `jde_fixed.schema.yaml` / `jde_fixed.dict.yaml` / `cn_dicts/jde/*` | 9.3.0 固定简码表（已清理 `①` 占位符） |
+| `jde_fixed.schema.yaml` / `jde_fixed.dict.yaml` / `cn_dicts/jde/*` | 9.3.0 固定简码表（已清理四码 `①` 占位符，短码 `①` 保留） |
 | `jdh_sentence.schema.yaml` / `jdh_sentence.dict.yaml` | 清洗后的全量带形码整句词库，19 组飞键规则，模块化 `import_tables` |
 | `jde_pinyin.schema.yaml` / `jde.dict.yaml` | 独立拼音反查方案与单字混合反查词典 |
 | `cn_dicts/pinyin/{8105,41448,base,words,tencent,moe}.dict.yaml` | 整句模块化词库，单文件均 < 45 MB |
@@ -86,6 +86,8 @@ keyboard:
 **清洗（手机端兼容性修复）**
 
 - 移除 `cn_dicts/jde/` 中 **14,111 条** PC 端 `①` 占位词条（主码表 5,999 + 扩展 8,112），解决 `marw` 等四码首选被 `①` 抢占。
+  - **仅限四码**。上游 V9.1.0 日志原文是「① 在一些四码符号处有冗余，删掉」，二码/三码的 `①` 是正规候选位（如 `oyy → ① Ⅰ ㊀`）。
+  - 仅 `oyy` 的 `①` 曾随批量清理丢失，已由 `tools/restore_circle_one.py` 补回。其余短码（`ck`/`ez`/`hq`/`kn` 等）的 `①` 是**主动删除**，不在补回范围。
 - 剔除 `cn_dicts/pinyin/base.dict.yaml` 中 **165 条**无拼音残缺词条，修正 `41448` 中 `貒 tuan;UE` → `tuan;ue`。
 - 整句词库清洗 **152 条**无拼音残缺词条、**7 条**大写编码混杂词条，补齐 **19 组**小鹤飞键，恢复用户调频（锁定 1–2 码短码不参与调频）。
 - 拆分注释格式统一为 `[字根·形码]`，修复多字节正则导致的 `··` 双点。

@@ -28,6 +28,7 @@
 
 ### 清洗修复的上游词库文件（直接覆盖上游同名文件）
 - `cn_dicts/jde/jde.dict.yaml` & `cn_dicts/jde/jde_ext.dict.yaml`：清理了 **14,111 条** PC 端 `①` 占位词条（解决手机端 `marw` 等四码单字首选为 `①` 的问题）。
+  - 注意：只 `oyy` 的 `①` 属误删并已由 `tools/restore_circle_one.py` 补回；其余短码（`ck`/`ez`/`hq`/`kn` 等 29 条）的 `①` 为主动删除，不要补。
 - `cn_dicts/pinyin/base.dict.yaml` & `cn_dicts/pinyin/41448.dict.yaml`：剔除上游 `base` 中 **165 条**无拼音残缺词条，修正 `41448` 中 `貒 tuan;UE` 为小写 `tuan;ue`。
 
 ### 直接继承上游的文件（本包未重复包含）
