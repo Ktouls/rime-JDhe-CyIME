@@ -1,0 +1,6 @@
+# CyIME 键盘/字体配置（方案包自带，装好即生效，字根注释不再显示方框）
+# 说明：这是 CyIME 的用户级配置，字段级覆盖内置 xime.yaml。
+# 若你本机已有自己的 xime.custom.yaml 且想保留其中其它设置，请只把这 3 行合并进去，不要整文件覆盖。
+keyboard:
+  fonts:
+    comment_font: fonts/ChaiPUA.ttf

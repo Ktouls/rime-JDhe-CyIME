@@ -23,7 +23,7 @@
 1. 安装 [CyIME](https://github.com/Cyletix/CyIME/releases/latest)。
 2. 打开本仓库主页 → 绿色 **`Code`** → **`Download ZIP`**。
 3. 把 ZIP **解压后**的全部内容（`*.schema.yaml`、`*.dict.yaml`、`cn_dicts/`、`lua/`、`opencc/`、`fonts/`、`other/`）放进 CyIME 的 **Rime 用户目录**（不要只放 ZIP，也不要保留外层文件夹）。
-4. **字体防方框**（详见下一节）：把 `fonts/xime.custom.snippet.yaml` 里的三行并入 `xime.custom.yaml`。
+4. **字体防方框**：包内已自带 `xime.custom.yaml`（`comment_font` 指向 `fonts/ChaiPUA.ttf`），正常导入即生效；仅当你本机已有自己的配置、想保留其它设置时，才按下一节只合并那三行。
 5. 在 CyIME 中点 **重新部署**。首次编译全量整句词库约需数十秒，请耐心等待，不要强杀进程。
 6. 「语言与方案」里**只启用「简单鹤」**。`jde_fixed`、`jdh_sentence`、`jde_pinyin` 是内部依赖方案，不要单独启用。
 
@@ -33,14 +33,16 @@
 
 拆分注释依赖 `fonts/ChaiPUA.ttf`，与上游 `opencc/jdh_cf.ocd2` 配套，用于修复「将」等字显示 `☒` 缺字。
 
-- **没有** `xime.custom.yaml` 时：把 `fonts/xime.custom.snippet.yaml` 复制到 Rime 根目录并改名为 `xime.custom.yaml`。
-- **已有** `xime.custom.yaml` 时：只把下面三行**合并**进去，**切勿整文件覆盖**（否则会丢掉你原有的键盘、布局、配色等设置）。
+- **本包已自带 `xime.custom.yaml`**（内容为 `keyboard.fonts.comment_font: fonts/ChaiPUA.ttf`），解压导入后字体自动生效，通常**无需任何手动操作**。
+- 仅当你本机**已有自己的 `xime.custom.yaml`**（改过键盘布局/配色/字体）且不想丢设置时，才**不要**覆盖它，只把下面三行**合并**进现有文件：
 
 ```yaml
 keyboard:
   fonts:
     comment_font: fonts/ChaiPUA.ttf
 ```
+
+- 注意：**重装 App** 会清空 Rime 用户目录，`xime.custom.yaml` 会丢失（字体变方框），重装后重新导入本包即可恢复。
 
 ---
 
@@ -69,7 +71,7 @@ keyboard:
 | `cn_dicts/my_user.dict.yaml` | 用户词组 |
 | `lua/moran*.lua`、`lua/chaifen_toggle.lua`、`lua/zrmdb.txt` | 魔然核心脚本、手机端拆分开关、字根/辅码表 |
 | `opencc/jdh_cf.json` / `opencc/jdh_cf.ocd2` | 官方简单鹤字根拆分词典 |
-| `fonts/ChaiPUA.ttf` / `fonts/xime.custom.snippet.yaml` | 配套拆分字体与防覆盖配置片段 |
+| `xime.custom.yaml` / `fonts/ChaiPUA.ttf` | 自带字体配置（`comment_font` 指向拆分字体）+ 配套字体文件 |
 | 部件拆字反查 | 复用 CyIME 内置 `radical_pinyin` 方案（`oiz` + 部件全拼，词典与编译产物均来自内置，不随包分发） |
 | `other/` | 上游字根图、更新日志、容错统计等资料 |
 

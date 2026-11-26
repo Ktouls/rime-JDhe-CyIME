@@ -19,10 +19,13 @@
 
 拆分注释依赖 `fonts/ChaiPUA.ttf`（与 `opencc/jdh_cf.ocd2` 配套）。
 
+**本包已自带 `xime.custom.yaml`，正常导入后字体自动生效，通常无需手动操作。**
+
 | 你的情况 | 做法 |
 |---|---|
-| Rime 目录下**没有** `xime.custom.yaml` | 把 `fonts/xime.custom.snippet.yaml` 复制到 Rime 根目录，改名为 `xime.custom.yaml` |
-| 目录下**已有** `xime.custom.yaml` | 只把下面三行**合并**进现有文件，**切勿整文件覆盖** |
+| 干净安装（Rime 目录下没有 `xime.custom.yaml`） | 包内自带的 `xime.custom.yaml` 会直接写入并生效 |
+| 目录下**已有**你自己的 `xime.custom.yaml`（改过布局/配色） | 把下面三行**合并**进现有文件，**切勿整文件覆盖** |
+| 重装了 App | `xime.custom.yaml` 会被清空，重新导入本包即可恢复 |
 
 ```yaml
 keyboard:
