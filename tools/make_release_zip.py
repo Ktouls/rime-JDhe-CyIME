@@ -15,6 +15,7 @@ import zipfile
 REPO = "/workspace/rime-JDhe-CyIME"
 FILES = [
     "README_CyIME.md",
+    "xime.custom.yaml",
     "jde.schema.yaml",
     "jde_fixed.schema.yaml",
     "jde_fixed.dict.yaml",
